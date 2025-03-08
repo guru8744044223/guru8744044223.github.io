@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Researcher | Portfolio</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121b2f;
+            --accent: #4F8AF7;
+            --accent-dark: #3366cc;
+            --text-primary: #e6e9ee;
+            --text-secondary: #8fadc0;
+            --code-bg: #172339;
+            --border-color: #2a3752;
+            --terminal-green: #0cca4a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Consolas', monospace;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .logo span {
+            color: var(--terminal-green);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            min-height: 80vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="0" y="20" fill="%234F8AF7">01001010</text><text x="0" y="40" fill="%234F8AF7">10101011</text><text x="0" y="60" fill="%234F8AF7">01110100</text><text x="0" y="80" fill="%234F8AF7">10011101</text></svg>');
+            background-repeat: repeat;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .accent {
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-dark);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: ">";
+            color: var(--accent);
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .skill-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .skill-card ul {
+            list-style-type: none;
+        }
+        
+        .skill-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .skill-card li::before {
+            content: "→";
+            color: var(--terminal-green);
+            position: absolute;
+            left: 0;
+        }
+        
+        .projects {
+            margin-bottom: 4rem;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--code-bg);
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            background-color: var(--code-bg);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .blogs {
+            margin-bottom: 4rem;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blog-img {
+            height: 180px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--code-bg);
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: var(--terminal-green);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .blog-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .terminal-section {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 4rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .terminal-title {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red {
+            background-color: #FF5F56;
+        }
+        
+        .dot-yellow {
+            background-color: #FFBD2E;
+        }
+        
+        .dot-green {
+            background-color: #27C93F;
+        }
+        
+        .terminal-content {
+            font-family: 'Courier New', monospace;
+            color: var(--terminal-green);
+            line-height: 1.6;
+        }
+        
+        .prompt {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+        
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            animation: typing 3s steps(30, end);
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        .contact {
+            margin-bottom: 4rem;
+        }
+        
+        .contact-form {
+            background-color: var(--bg-secondary);
+            border: 3px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: 'Consolas', monospace;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 2000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-link:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .project-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Cyber<span>Sec</span> Researcher</div>
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#blogs">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="main">
+        <div class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>Vulnerability Research & <span class="accent">Malware Analysis</span></h1>
+                <p>Specialized in penetration testing, exploit development, and malware research. Discovering vulnerabilities and analyzing adversarial infrastructures to improve security posture.</p>
+                <a href="#contact" class="cta-button">Get in Touch</a>
+            </div>
+        </div>
+        
+        <div id="skills" class="skills-section">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills">
+                <div class="skill-card">
+                    <h3>Penetration Testing</h3>
+                    <ul>
+                        <li>Web Application Security</li>
+                        <li>Network Infrastructure Testing</li>
+                        <li>API Security Assessment</li>
+
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Exploit Development</h3>
+                    <ul>
+                        <li>Proof-of-Concept Development</li>
+                        <li>Vulnerability Validation</li>
+                        <li>Fuzzing & Dynamic Analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Malware Analysis</h3>
+                    <ul>
+                        <li>Static & Dynamic Analysis</li>
+                        <li>Reverse Engineering</li>
+                        <li>C2 Infrastructure Analysis</li>
+                        <li>PUA (Potentially Unwanted Applications)</li>
+                        <li>IOC Extraction & Sharing</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Browser Security</h3>
+                    <ul>
+                        <li>Chrome Extension Analysis</li>
+                        <li>Browser Exploitation</li>
+                        <li>Client-Side Attack Vectors</li>
+                        <li>Browser Sandbox Escapes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="terminal-section">
+            <div class="terminal-header">
+                <div class="terminal-title">terminal@researcher:~</div>
+                <div class="terminal-dots">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <div class="terminal-line"><span class="prompt">$</span> whoami</div>
+                <div class="terminal-line">cybersec-researcher</div>
+                <div class="terminal-line"><span class="prompt">$</span> cat skills.txt</div>
+                <div class="terminal-line">Penetration Testing | Vulnerability Research | Malware Analysis | Reverse Engineering</div>
+                <div class="terminal-line"><span class="prompt">$</span> ./run_analysis.sh --target=suspicious_binary.exe</div>
+                <div class="terminal-line">Analysis initiated...</div>
+                <div class="terminal-line">Identifying C2 infrastructure...</div>
+                <div class="terminal-line">Command and Control server detected at 192.168.xx.xx</div>
+                <div class="terminal-line">Extracting IOCs...</div>
+                <div class="terminal-line">Analysis complete. Report generated.</div>
+                <div class="terminal-line"><span class="prompt">$</span> _</div>
+            </div>
+        </div>
+        
+        <div id="projects" class="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Images/C2.jpg" alt="C2 Panel Fingerprinting Tool">
+                    </div>
+                    <div class="project-content">
+                        <h3>C2 Panel Fingerprinting Tool</h3>
+                        <p>Automated tool for identifying and categorizing command and control panels across the internet, including fingerprinting techniques and evasion capabilities.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">OSINT</span>
+                            <span class="tag">Maltego</span>
+                            <span class="tag">C2 Infrastructure</span>
+                        </div>
+                        <a href="#" class="cta-button">View Project (Confidential)</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Images/Chrome.jpg" alt="Chrome Extension Analyzer">
+                    </div>
+                    <div class="project-content">
+                        <h3>Chrome Extension Analyzer </h3>
+                        <p>Automated security analysis framework for Chrome extensions that detects potentially malicious behavior, data exfiltration, and privilege escalation vulnerabilities.</p>
+                        <div class="tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Chrome API</span>
+                            <span class="tag">Static Analysis</span>
+                            <span class="tag">Browser Security</span>
+                        </div>
+                        <a href="#" class="cta-button">View Project (Confidential)</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Images/PUA.jpg" alt="PUA Detection Framework">
+                    </div>
+                    <div class="project-content">
+                        <h3>PUA Detection Framework</h3>
+                        <p>Advanced framework for identifying potentially unwanted applications through behavioral analysis, network fingerprinting, and system modification detection.</p>
+                        <div class="tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Yara Rules</span>
+                            <span class="tag">Behavioral Analysis</span>
+                            <span class="tag">Threat Intelligence</span>
+                        </div>
+                        <a href="#" class="cta-button">View Project (Confidential)</a>
+                    </div>
+                </div>
+                
+               
+        </div>
+        
+        <div id="blogs" class="blogs" >
+            <h2 class="section-title">Technical Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="Images/Malware.jpg" alt="Malware Infrastructure Analysis">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 1, 2025</div>
+                        <h3>Tweaks Stealer Targets Roblox Users Through YouTube and Discord</h3>
+                        <p> A new campaign distributing an infostealer called Tweaks (aka Tweaker) that targets Roblox users. Attackers are exploiting popular platforms, like YouTube and Discord, to distribute Tweaks to Roblox users, capitalizing on the ability of legitimate platforms to evade detection by web filter block lists that typically block known malicious servers. Attackers share malicious files disguised as Frames Per Second (FPS) optimization packages with users and, in turn, users infect their own systems with Tweaks malware.</p>
+                        <a href="https://www.zscaler.com/blogs/security-research/tweaks-stealer-targets-roblox-users-through-youtube-and-discord" class="cta-button">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="Images/Malware.jpg" alt="Chrome Extension Security">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 15, 2025</div>
+                        <h3>Ransomware Redefined: RedEnergy Stealer-as-a-Ransomware attacks</h3>
+                        <p> RedEnergy stealer (not to be confused with the australian company Red Energy) that fits into the hybrid Stealer-as-a-Ransomware threat category.  RedEnergy stealer uses a fake update campaign to target multiple industry verticals and possesses the ability to steal information from various browsers, enabling the exfiltration of sensitive data, while also incorporating different modules for carrying out ransomware activities.The name of the malware was kept due to the common method names observed during the analysis.</p>
+                        <a href="https://www.zscaler.com/blogs/security-research/ransomware-redefined-redenergy-stealer-ransomware-attacks" class="cta-button">Read More</a>
+                    </div>
+                </div>
+                
+                
+        
+        <div id="contact" class="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Medium</a>
+            </div>
+            <div class="copyright">© 2025 Cybersecurity Researcher. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>
